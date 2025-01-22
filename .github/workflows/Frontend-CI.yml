@@ -79,8 +79,8 @@ jobs:
           npm ci
         working-directory: starter/frontend
 
-      - name: Build Docker image
+      - name: Build and Run Docker Image
         run: |
-          docker build --build-arg REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag mp-frontend:latest .
-          docker run --name mp-frontend -p 3000:3000 -d mp-frontend
-        working-directory: starter/frontend
+         cd starter/frontend
+         docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5001 --tag=mp-frontend:latest .
+         docker run --name mp-frontend -p 3000:3000 -d mp-frontend
