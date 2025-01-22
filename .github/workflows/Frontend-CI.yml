@@ -28,6 +28,10 @@ jobs:
       - name: Run lint
         run: npm run lint
         working-directory: starter/frontend
+        
+      - name: Run ESLint and auto-fix
+        run: npx eslint . --fix
+        working-directory: starter/frontend
 
       - name: Checkout Run Lint
         run: cd starter/frontend && npm run lint
