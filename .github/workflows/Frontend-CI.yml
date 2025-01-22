@@ -20,16 +20,13 @@ jobs:
           cache: 'npm'
           cache-dependency-path: starter/frontend/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (fallback)
+        run: |
+          npm ci || npm install
         working-directory: starter/frontend
 
       - name: Run lint
         run: npm run lint
-        working-directory: starter/frontend
-
-     - name: Run lint with fix
-        run: npm run lint -- --fix
         working-directory: starter/frontend
 
   test:
@@ -46,8 +43,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: starter/frontend/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (fallback)
+        run: |
+          npm ci || npm install
         working-directory: starter/frontend
 
       - name: Run test
@@ -68,8 +66,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: starter/frontend/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (fallback)
+        run: |
+          npm ci || npm install
         working-directory: starter/frontend
 
       - name: Build Docker image
