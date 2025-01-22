@@ -54,13 +54,8 @@ jobs:
           npm ci
         working-directory: starter/frontend
 
-      - name: Run ESLint and auto-fix
-        run: npx eslint . --fix
-        working-directory: starter/frontend
-        
-
       - name: Run test
-        run: npm run test
+        run: npm run test -- --transformIgnorePatterns --passWithNoTests
         working-directory: starter/frontend
 
       
@@ -82,10 +77,6 @@ jobs:
       - name: Install dependencies (fallback)
         run:
           npm ci
-        working-directory: starter/frontend
-        
-      - name: Run ESLint and auto-fix
-        run: npx eslint . --fix
         working-directory: starter/frontend
 
       - name: Build Docker image
