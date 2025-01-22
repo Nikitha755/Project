@@ -56,13 +56,20 @@ jobs:
         run:
           npm ci
         working-directory: starter/frontend
+        
+      - name: Checkout Run Test
+        run: cd starter/frontend && npm run test
+
+      - name: Run ESLint and auto-fix
+        run: npx eslint . --fix
+        working-directory: starter/frontend
+        
 
       - name: Run test
         run: npm run test
         working-directory: starter/frontend
 
-      - name: Checkout Run Test
-        run: cd starter/frontend && npm run test
+      
 
   build:
     runs-on: ubuntu-latest
@@ -81,6 +88,10 @@ jobs:
       - name: Install dependencies (fallback)
         run:
           npm ci
+        working-directory: starter/frontend
+        
+      - name: Run ESLint and auto-fix
+        run: npx eslint . --fix
         working-directory: starter/frontend
 
       - name: Build Docker image
